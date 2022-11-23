@@ -92,33 +92,23 @@ function buy(id) {
     document.getElementById('count_product').innerHTML = cartList.length;
 
     console.log("Exercici 1: ",cartList);
-
-    calculateTotal();
 }
 
 // Exercise 2
 function cleanCart() {
     // remove all products from carList
+    cartList = [];
+    document.getElementById('cart_list').innerHTML = "";
+    document.getElementById('total_price').innerHTML = 0;
+    document.getElementById('count_product').innerHTML = 0;
 
-    if(cartList.length>0){
-        let clean = confirm("Do you want empty the shopping cart?");
-        
-        if(clean){
-            cartList = [];
-            document.getElementById('cart_list').innerHTML = "";
-            document.getElementById('total_price').innerHTML = "0.00";
-            document.getElementById('count_product').innerHTML = 0;
-            console.log("Exercici 2: ", cartList);
-        }
-    }else{
-        alert("Cart is empty");
-    }
+    console.log("Exercici 2: ", cartList);
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
-    total = 0;
+    let total = 0;
 
     for(let i=0; i<cartList.length; i++){
         total += cartList[i].price;
@@ -162,7 +152,8 @@ function generateCart() {
                 const newProduct = {id:idProd,name:nameProd,price:priceProd,type:typeProd,quantity:1,subtotalWithDiscount:subtotalWithDiscountProd};
 
                 cart.push(newProduct);
-            }                  
+            }
+                  
     }
     
     console.log("Exercici 4: ",cart);
@@ -171,7 +162,6 @@ function generateCart() {
 // Exercise 5
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
-    let subTotal = 0;
 
     //traverse the array cart
     for(let i=0; i<cart.length; i++){
@@ -179,26 +169,23 @@ function applyPromotionsCart() {
         // DISCOUNT FOR PROMOTION
         if(cart[i].name == 'cooking oil' && cart[i].quantity>=3){
             cart[i].subtotalWithDiscount = cart[i].quantity * 10;
-            subTotal += cart[i].subtotalWithDiscount;
         }
 
         if(cart[i].name == 'Instant cupcake mixture' && cart[i].quantity>=10){
             const discountProd = (cart[i].price * 2/3).toFixed(2);  
             cart[i].subtotalWithDiscount = cart[i].quantity * discountProd;
-            subTotal += cart[i].subtotalWithDiscount;
         }
     }
-    
-    console.log("Exercici 5: ",cart);
-    console.log("Subtotal with Discount: ", subTotal);
-}
 
+    console.log("Exercici 5: ",cart);
+
+}
 
 // Exercise 6
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
-    subtotal = 0;
     let cadena = '';
+    let total = 0;
 
     // Remove generateCart button and call functions from here
     generateCart();
@@ -208,28 +195,29 @@ function printCart() {
     for(let i=0; i<cart.length; i++){
         cadena += '<tr>';
         cadena += '<th scope="row">' + cart[i].name + '</th>';
-        cadena += '<td>$' + cart[i].price + '</td>';
+        cadena += '<td>' + cart[i].price + '</td>';
         cadena += '<td>' + cart[i].quantity + '</td>';
-        cadena += '<td>$' + cart[i].subtotalWithDiscount.toFixed(2) + '</td>';
+        cadena += '<td>' + cart[i].subtotalWithDiscount.toFixed(2) + '</td>';
 
-        subtotal += cart[i].subtotalWithDiscount;
+        total += cart[i].subtotalWithDiscount;
     }
 
     document.getElementById('cart_list').innerHTML = cadena;
-    document.getElementById('total_price').innerHTML = subtotal.toFixed(2);    
+    document.getElementById('total_price').innerHTML = total.toFixed(2);
+    
 }
 
 
 // ** Nivell II **
 
-// Exercise 7
+// Exercise 8
 function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
 }
 
-// Exercise 8
+// Exercise 9
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
