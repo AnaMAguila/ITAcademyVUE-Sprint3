@@ -13,14 +13,6 @@ window.addEventListener('load', ()=> {
 	var fPassword = document.getElementById("fPassword");
 	var fPhone = document.getElementById("fPhone");
 
-	// Get the error elements
-	var errorName = document.getElementById("errorName");
-	var errorEmail = document.getElementById("errorEmail");  
-	var errorAddress = document.getElementById("errorAddress");
-	var errorLastN = document.getElementById("errorLastN");  
-	var errorPassword = document.getElementById("errorPassword");
-	var errorPhone = document.getElementById("errorPhone");  
-
 
 	form.addEventListener('submit', (e) => {
 			e.preventDefault();
