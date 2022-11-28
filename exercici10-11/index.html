@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Mi hoja de estilos -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Bootstrap icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+
+    <!-- JavaScript Bootstrap -->
+    <script defer src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <!-- Mi JavaScript -->
+    <script defer src="./js/shop.js"></script>
+    <script defer src="./js/checkout.js"></script>
+
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon" />
+
+    <title>shopNow - eCommerce</title>
+</head>
+
+<body>
+    <nav class="py-1 bg-white">
+        <div class="container-fluid d-flex flex-wrap justify-content-center">
+            <ul class="nav me-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-dark px-2"><img src="./assets/icons/ukingdom.jpg"
+                            alt="English" /></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-dark px-2"><img src="./assets/icons/spain.jpg" alt="Español" /></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link link-dark px-2"><img src="./assets/icons/france.jpg"
+                            alt="Français" /></a>
+                </li>
+                <li class="nav-item my-auto d-none d-sm-block">
+                    <small>Ground Shipping Over $150</small>
+                </li>
+            </ul>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 d-flex"><i class="fas fa-retweet my-auto"></i><span
+                            class="d-none d-md-block mx-1">Compare</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 d-flex"><i class="far fa-heart my-auto"></i><span
+                            class="d-none d-md-block mx-1">Wish List</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link px-2 d-flex" data-bs-toggle="modal" data-bs-target="#checkoutModal"
+                        data-bs-auto-close="outside"><i class="fas fa-user my-auto"></i><span
+                            class="d-none d-md-block mx-1">Checkout</span></a>
+                </li>
+                <li class="nav-item border">
+                    <a href="javascript:void(0)" class="btn flex-center rounded rounded-0" type="button"
+                        data-bs-toggle="modal" data-bs-target="#cartModal" onclick="open_modal()"
+                        data-bs-auto-close="outside">
+                        <i class="fas fa-shopping-cart me-1"></i> Cart <span
+                            class="badge text-primary ms-1 rounded-pill" id="count_product">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-danger" href="#">ShopNow</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-ellipsis-h text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#grocery">Grocery</a></li>
+                            <li><a class="dropdown-item" href="#beauty">Beauty</a></li>
+                            <li><a class="dropdown-item" href="#clothes">Clothes</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <li><a class="dropdown-item" href="#">About Us</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                            <li><a class="dropdown-item" href="#">Faq</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Terms and Conditions</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" role="button">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" role="button">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2 rounded rounded-0" type="search" placeholder="Search Product"
+                        aria-label="Search" />
+                    <button class="btn btn-outline-white rounded rounded-0" type="submit">
+                        <i class="fas fa-search text-white"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators d-none d-sm-block text-center">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./assets/img/header.jpg" class="w-100" />
+
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1>IT Academy Shop</h1>
+                            <p>Get up to 50% off Today Only!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/img/header2.jpg" class="w-100" />
+
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>IT Academy Shop</h1>
+                            <p>Get up to 50% off Today Only!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/img/header3.jpg" class="w-100" />
+
+                    <div class="container">
+                        <div class="carousel-caption text-start text-black">
+                            <h1>IT Academy Shop</h1>
+                            <p>Get up to 50% off Today Only!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="container-fluid row">
+            <div class="container p-0 col-3 d-none d-lg-block">
+
+                <div class="bg-white p-3">
+                    <h5 class="text-center text-primary">Cart Content</h5>
+                    <hr>
+                    <p id="content-cart"></p>
+                </div>
+
+                <div>
+                    <img src="./assets/img/black_friday.jpg" alt="Black Friday" width="100%">
+                </div>
+
+                <div class="bg-white p-4 text-center">
+                    <h5 class="mb-4">Subscribe to our Newsletter</h5>
+
+                    <form class="form-newsletter my-3" novalidate>
+                        <div class="row">
+                            <div class="col-12 col-xl-8"><input id="sEmail" class="form-control-sm text-primary" type="email"
+                                    placeholder="Email" />
+                                <div class="invalid-feedback text-start"><small>Invalid email</small></div>
+                                <div class="valid-feedback text-start"><small>Subscribed successfully</small></div>
+                            </div>
+                            <div class="col-12 col-xl-4 mt-4 mt-xl-0"><button class="btn btn-danger btn-sm text-white">Send</button></div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="bg-primary p-3">
+                    <h5 class="text-center text-white"><i class="fas fa-dollar-sign p-3"></i>Cash on Delivery</h5>
+                    <h5 class="text-center text-white"><i class="fas fa-arrows-alt-h p-3"></i>100% Return</h5>
+                    <h5 class="text-center text-white"><i class="far fa-thumbs-up p-3"></i>Quality Assured</h5>
+                    <h5 class="text-center text-white"><i class="fas fa-stopwatch p-3"></i>Delivery on time</h5>
+                </div>
+
+                <div class="position-relative">
+                    <div class="position-absolute w-100 p-4">
+                        <h5 class="text-center text-bg-danger text-white p-2">Enjoy ShopNow!!</h5>
+                    </div>
+                    <img src="./assets/img/shop_online.jpg" alt="Black Friday" width="100%">
+                </div>
+            </div>
+
+            <div class="container col-12 col-lg-9">
+
+                <!-- Section-->
+                <section class="row mt-3" id="grocery">
+                    <div class="category-title mb-4 mx-auto">
+                        <h3 class="text-center text-white">Grocery</h3>
+                    </div>
+
+                    <div class="container px-3 mt-3">
+                        <div class="row row-cols-1 row-cols-md-4 justify-content-center">
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/olive_oil.jpg" class="img-fluid" alt="Cooking Oil">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Cooking Oil</h6>
+                                                $10.5
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(1)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/pasta.jpg" class="img-fluid" alt="Pasta">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Pasta</h6>
+                                                $6.25
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(2)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/cupcake.jpg" class="img-fluid"
+                                                alt="Instant cupcake mixture">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Instant cupcake mixture</h6>
+                                                $5
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(3)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="row mt-5" id="beauty">
+                    <div class="category-title mb-4 mx-auto">
+                        <h3 class="text-center text-white">Beauty</h3>
+                    </div>
+
+                    <div class="container px-3 mt-3">
+                        <div class="row row-cols-1 row-cols-md-4 justify-content-center">
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/all_in_one.jpg" class="img-fluid" alt="All-in-1">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">All-in-1</h6>
+                                                $260
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(4)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/zero_makeup_kit.jpg" class="img-fluid"
+                                                alt="Zero makeup kit">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Zero makeup kit</h6>
+                                                $20.5
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(5)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/lip_tints.jpg" class="img-fluid" alt="Lip tints">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Lip tints</h6>
+                                                $12.75
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(6)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="row mt-5" id="clothes">
+                    <div class="category-title mb-4 mx-auto">
+                        <h3 class="text-center text-white">Clothes</h3>
+                    </div>
+
+                    <div class="container px-3 mt-3">
+                        <div class="row row-cols-1 row-cols-md-4 justify-content-center">
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/lawn_dress.jpg" class="img-fluid" alt="Lawn dress">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Lawn dress</h6>
+                                                $15
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(7)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/lawn-chiffon.jpg" class="img-fluid"
+                                                alt="Lawn-chiffon combo">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Lawn-chiffon combo</h6>
+                                                $19.99
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(8)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col card mb-3 col-10 mx-4 mx-md-2 p-0 bg-white">
+                                <div class="row g-0 row-cols-md-1">
+                                    <div class="col-6">
+                                        <div class="wishlist border position-relative">
+                                            <div class="position-absolute mx-2">
+                                                <a href="#"><i class="fas fa-heart"></i></a>
+                                            </div>
+                                            <img src="./assets/img/toddler_frock.jpg" class="img-fluid"
+                                                alt="Toddler Frock">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <h6 class="fw-bolder text-danger">Toddler Frock</h6>
+                                                $9.99
+                                            </div>
+                                            <div class="card-footer mt-2 border-top-0 bg-transparent">
+                                                <div class="text-center"><button type="button" onclick="addToCart(9)"
+                                                        class="btn btn-outline-danger">Add to cart</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer class="py-3 bg-black">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel"><i class="fas fa-cart-arrow-down"></i> My
+                        Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center bill px-5 text-primary mb-4">Shopping Cart</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col" class="text-center">Qty.</th>
+                                <th scope="col" class="text-end">Total <small>(with discount)</small></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart_list">
+                        </tbody>
+                    </table>
+                    <div class="text-end fs-3">
+                        <strong>Total:</strong> <span class="text-danger">$</span><span id="total_price"
+                            class="text-danger"></span>
+                    </div>
+                    <div class="text-center">
+                        <!-- <a href="checkout.html" class="btn btn-outline-danger m-3">Checkout</a> -->
+                        <a href="#" class="btn btn-outline-danger m-3">Go to Payment</a>
+                        <a href="javascript:void(0)" onclick="cleanCart()" class="btn btn-outline-danger m-3">Clean
+                            Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- Form -->
+                    <div class="container">
+                        <h3 class="text-center bill px-5 text-primary mb-4">Checkout Page</h3>
+
+                        <form class="form" novalidate>
+
+                            <div class="form-group row mt-3">
+                                <label for="fName" class="col-sm-3 col-form-label">First Name</label>
+                                <div class="col-sm-9">
+                                    <input id="fName" class="form-control ml-3" type="text" placeholder="First Name" />
+                                    <div id="errorName" class="invalid-feedback">This field is required and must have,
+                                        at least, 3 characters. Numbers are not accepted.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-3">
+                                <label for="fLastN" class="col-sm-3 col-form-label">Last Name</label>
+                                <div class="col-sm-9">
+                                    <input id="fLastN" class="form-control" type="text" placeholder="Last Name" />
+                                    <div id="errorLastN" class="invalid-feedback">This field is required and must have,
+                                        at least, 3 characters. Numbers are not accepted.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-goup row mt-3">
+                                <label for="fEmail" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input id="fEmail" class="form-control ml-3" type="email" placeholder="Email" />
+                                    <div id="errorEmail" class="invalid-feedback">This field is required and must
+                                        contain an '@' and have, at
+                                        least, 3 characters</div>
+                                </div>
+                            </div>
+
+                            <div class="form-goup row mt-3">
+                                <label for="fPassword" class="col-sm-3 col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input id="fPassword" class="form-control" title="(4-8 characters)" type="password"
+                                        placeholder="Password" />
+                                    <div id="errorPassword" class="invalid-feedback">Enter a correct password</div>
+                                </div>
+                            </div>
+
+                            <div class="form-goup row mt-3">
+                                <label for="fAddress" class="col-sm-3 col-form-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input id="fAddress" class="form-control" type="text" placeholder="Address" />
+                                    <div id="errorAddress" class="invalid-feedback">This field is required and must
+                                        have, at least, 3 characters
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-goup row mt-3">
+                                <label for="fPhone" class="col-sm-3 col-form-label">Phone Number</label>
+                                <div class="col-sm-9">
+                                    <input id="fPhone" class="form-control" type="number" placeholder="Phone No." />
+                                    <div id="errorPhone" class="invalid-feedback">Invalid phone number!! Must be 9
+                                        digits with no letters</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 text-end final">
+                                <!-- <button class="p-2 px-4 btn btn-primary shadow-lg">
+                                        <i class="fas fa-cart-arrow-down p-2"></i>Save
+                                    </button> -->
+                                <button class="btn btn-outline-danger">Send</button>
+                            </div>
+                    </form>
+
+                </div>
+
+                <!-- Form end -->
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
