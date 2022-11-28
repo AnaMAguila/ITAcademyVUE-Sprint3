@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "purgecss -css css/style.css --content index.html -o css/reduced.css"
   },
   "keywords": [],
   "author": "",
